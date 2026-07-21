@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TANANDRON — 3D Artist Portfolio</title>
+<meta name="description" content="3D Artist Portfolio — real-time viewer, wireframe, UV, polycount & texture breakdown for game industry internship applications.">
+<link rel="icon" href="data:,">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<button class="nav-toggle" id="navToggle" aria-label="Open menu" aria-expanded="false">
+  <span></span><span></span><span></span>
+</button>
+
+<nav class="tab-bar" id="tabBar">
+  <a href="#hero" data-target="hero" class="tab-link active">Home</a>
+  <a href="#about" data-target="about" class="tab-link">About</a>
+  <a href="#gallery" data-target="gallery" class="tab-link">Portfolio</a>
+  <a href="#showcase" data-target="showcase" class="tab-link">Breakdown</a>
+  <a href="#projects" data-target="projects" class="tab-link">Projects</a>
+  <a href="#contact" data-target="contact" class="tab-link">Contact</a>
+</nav>
+
+<main>
+
+  <!-- HERO -->
+  <section id="hero" class="section hero">
+    <div class="hero-grid">
+      <span class="eyebrow">PORTFOLIO</span>
+      <h1 class="hero-title">TANANDRON<span class="accent">PORTFOLIO</span></h1>
+      <div class="hero-cta">
+        <a href="#projects" class="btn btn-primary">View Portfolio
+</a>
+        <a href="#contact" class="btn btn-ghost">Contact Me</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about" class="section about">
+    <div class="section-head">
+      <h2>About</h2>
+    </div>
+    <div class="about-grid">
+      <div class="about-portrait">
+        <img src="assets/profile/portrait.jpg" alt="Tanandron portrait">
+      </div>
+      <div class="about-content">
+        <div class="about-text">
+          <p>I am a fourth-year student at Mahasarakham University focusing on
+a career as a 3D Artist, with a specific interest in Character
+Modeling and Game Assets. I am proficient in the entire 3D
+pipeline, from high-poly sculpting in ZBrush to retopology, UV
+mapping, and texturing. Furthermore, my experience collaborating
+on university projects has honed my teamwork skills, ability to
+perform well under pressure, and effective communication. I am
+always open to learning new things and continuously improving
+myself to grow as a professional 3D Artist.</p>
+          <p class="muted">Looking for internship or entry-level 3D Artist opportunities in the gaming industry.</p>
+        </div>
+        <div class="skill-chips">
+          <span class="chip">Blender</span>
+          <span class="chip">Maya</span>
+          <span class="chip">ZBrush</span>
+          <span class="chip">Substance Painter</span>
+          <span class="chip">Unreal Engine 5</span>
+          <span class="chip">Unity</span>
+          <span class="chip">Photoshop</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ART GALLERY -->
+  <section id="gallery" class="section gallery">
+    <div class="section-head">
+      <h2>Portfolio</h2>
+    </div>
+    <div class="gallery-filter" id="galleryFilter"></div>
+    <div class="gallery-grid" id="galleryGrid"></div>
+  </section>
+
+  <!-- BREAKDOWN / VIEWER -->
+  <section id="showcase" class="section showcase">
+    <div class="section-head">
+      <h2>Model Breakdown</h2>
+    </div>
+
+    <div class="showcase-layout">
+      <div class="viewer-frame">
+        <div class="viewer-tick tl"></div><div class="viewer-tick tr"></div>
+        <div class="viewer-tick bl"></div><div class="viewer-tick br"></div>
+        <div id="viewerCanvas"></div>
+        <div class="viewer-loading" id="viewerLoading">Loading model…</div>
+        <div class="viewer-controls">
+          <button id="btnAutoRotate" class="icon-btn active" title="Auto rotate">⟳</button>
+          <button id="btnReset" class="icon-btn" title="Reset view">⤾</button>
+          <button id="btnFullscreen" class="icon-btn" title="Fullscreen">⛶</button>
+        </div>
+      </div>
+
+      <div class="breakdown-side">
+        <div class="project-picker" id="projectPicker"></div>
+
+        <div class="breakdown-tabs" id="breakdownTabs">
+          <button class="b-tab active" data-tab="baseColor">Base Color</button>
+          <button class="b-tab" data-tab="wireframe">Wireframe</button>
+          <button class="b-tab" data-tab="uv">UV Layout</button>
+          <button class="b-tab" data-tab="highPoly">High Poly</button>
+          <button class="b-tab" data-tab="lowPoly">Low Poly</button>
+          <button class="b-tab" data-tab="textures">Textures</button>
+        </div>
+
+        <div class="breakdown-panel" id="breakdownPanel"></div>
+
+        <div class="stats-bar" id="statsBar"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section id="projects" class="section projects">
+    <div class="section-head">
+      <h2>Projects</h2>
+    </div>
+    <div class="project-grid" id="projectGrid"></div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" class="section contact">
+    <div class="section-head">
+      <h2>Contact</h2>
+    </div>
+    <div class="contact-grid">
+      <p class="contact-lead">internship or employment opportunities.</p>
+      <div class="contact-links">
+        <a href="mailto:tanandron.pnk@gmail.com" class="btn btn-primary">tanandron.pnk@gmail.com</a>
+        <a href="#" class="btn btn-ghost">ArtStation ↗</a>
+        <a href="#" class="btn btn-ghost">Download CV</a>
+      </div>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <span>© 2026 Tanandron.Portfolio</span>
+  </footer>
+
+</main>
+
+<div class="lightbox" id="lightbox">
+  <button class="lightbox-close" id="lightboxClose" aria-label="Close">✕</button>
+  <div class="lightbox-body" id="lightboxBody"></div>
+</div>
+
+<script type="importmap">
+{
+  "imports": {
+    "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+    "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/"
+  }
+}
+</script>
+<script type="module" src="js/main.js"></script>
+</body>
+</html>
