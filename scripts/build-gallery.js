@@ -17,10 +17,14 @@ const GALLERY_DIR = path.join(ROOT, 'assets', 'gallery');
 const MAIN_JS = path.join(ROOT, 'js', 'main.js');
 const IMAGE_EXT = new Set(['.jpg', '.jpeg', '.png', '.webp', '.gif', '.avif']);
 
+// The filename IS the caption — name files exactly how the caption should read.
+// The only cleanup applied: underscores/dashes become spaces, and the very first
+// letter is capitalized. Everything else (casing, parentheses, numbers) is preserved
+// as typed, so renaming a file is the only way to change what shows on the site.
 function humanize(filename) {
   const base = filename.replace(/\.[^.]+$/, '');
-  const words = base.replace(/[_-]+/g, ' ').trim().split(/\s+/);
-  return words.map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
+  const cleaned = base.replace(/[_-]+/g, ' ').replace(/\s+/g, ' ').trim();
+  return cleaned.charAt(0).toUpperCase() + cleaned.slice(1);
 }
 
 // Categories listed here are shown last (in this order) when filtering by "All" —
