@@ -12,28 +12,45 @@ import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
    ========================================================================= */
 const PROJECTS = [
   {
-    id: 'prop',
-    title: 'Sci-Fi Container Prop',
+    id: 'kunai',
+    title: 'Kunai Prop',
     role: 'Hard-surface Prop Artist',
     tools: ['Blender', 'Substance Painter', 'Marmoset'],
-    model: 'https://threejs.org/examples/models/gltf/DamagedHelmet/glTF/DamagedHelmet.gltf',
+    model: 'assets/models/kunai.glb',
     stats: { tris: '18,420', verts: '11,208', texRes: '4K PBR', engine: 'Unreal Engine 5' },
-  },
-  {
-    id: 'prop2',
-    title: 'Stylized Prop — Duck',
-    role: 'Stylized Prop Artist',
-    tools: ['Maya', 'ZBrush', 'Photoshop'],
-    model: 'https://threejs.org/examples/models/gltf/Duck/glTF/Duck.gltf',
-    stats: { tris: '2,340', verts: '1,502', texRes: '2K', engine: 'Unity' },
-  },
-  {
-    id: 'char',
-    title: 'Game-Ready Character',
-    role: 'Character Artist',
-    tools: ['ZBrush', 'Maya', 'Substance Painter'],
-    model: 'https://threejs.org/examples/models/gltf/Soldier.glb',
-    stats: { tris: '42,760', verts: '24,910', texRes: '4K PBR', engine: 'Unreal Engine 5' },
+    renders: {
+      uv: 'assets/renders/kunai_uv.png',
+      textures: [
+        { part: 'blade', label: 'Blade', maps: {
+          baseColor: 'assets/renders/kunai_tex/blade_basecolor.jpg',
+          normal: 'assets/renders/kunai_tex/blade_normal.jpg',
+          roughness: 'assets/renders/kunai_tex/blade_roughness.jpg',
+          metallic: 'assets/renders/kunai_tex/blade_metallic.jpg',
+          height: 'assets/renders/kunai_tex/blade_height.jpg',
+        }},
+        { part: 'dam', label: 'Handle', maps: {
+          baseColor: 'assets/renders/kunai_tex/dam_basecolor.jpg',
+          normal: 'assets/renders/kunai_tex/dam_normal.jpg',
+          roughness: 'assets/renders/kunai_tex/dam_roughness.jpg',
+          metallic: 'assets/renders/kunai_tex/dam_metallic.jpg',
+          height: 'assets/renders/kunai_tex/dam_height.jpg',
+        }},
+        { part: 'handle', label: 'Cycle', maps: {
+          baseColor: 'assets/renders/kunai_tex/handle_basecolor.jpg',
+          normal: 'assets/renders/kunai_tex/handle_normal.jpg',
+          roughness: 'assets/renders/kunai_tex/handle_roughness.jpg',
+          metallic: 'assets/renders/kunai_tex/handle_metallic.jpg',
+          height: 'assets/renders/kunai_tex/handle_height.jpg',
+        }},
+        { part: 'pra', label: 'Fabric', maps: {
+          baseColor: 'assets/renders/kunai_tex/pra_basecolor.jpg',
+          normal: 'assets/renders/kunai_tex/pra_normal.jpg',
+          roughness: 'assets/renders/kunai_tex/pra_roughness.jpg',
+          metallic: 'assets/renders/kunai_tex/pra_metallic.jpg',
+          height: 'assets/renders/kunai_tex/pra_height.jpg',
+        }},
+      ],
+    },
   },
 ];
 
@@ -41,8 +58,6 @@ const BREAKDOWN_TABS = [
   { key: 'baseColor', label: 'Base Color', desc: 'ผิวโมเดลสุดท้ายพร้อม PBR Texture ครบชุด (Albedo / Roughness / Metallic / Normal).' },
   { key: 'wireframe', label: 'Wireframe', desc: 'โครงสร้าง Topology ของโมเดล — แสดงบนวิวเวอร์จริงแบบ Real-time.' },
   { key: 'uv', label: 'UV Layout', desc: 'การคลี่ UV สำหรับ Bake Texture — จัด Island ให้ใช้พื้นที่ Texture Sheet อย่างมีประสิทธิภาพ' },
-  { key: 'highPoly', label: 'High Poly', desc: 'เวอร์ชัน Sculpt ความละเอียดสูงสำหรับ Bake รายละเอียดลง Normal Map' },
-  { key: 'lowPoly', label: 'Low Poly', desc: 'เวอร์ชัน Game-Ready ที่ผ่าน Retopology พร้อมใช้งานจริงในเอนจิ้น' },
   { key: 'textures', label: 'Textures', desc: 'ชุด Texture Map ที่ Bake และ Paint (Base Color / Normal / Roughness / Metallic / AO)' },
 ];
 
@@ -61,6 +76,7 @@ const GALLERY_ITEMS = [
   { category: 'Character', title: 'Hanuman low', img: 'assets/gallery/Character/Hanuman low.png' },
   { category: 'Character', title: 'Hanuman', img: 'assets/gallery/Character/Hanuman.png' },
   { category: 'Character', title: 'Jinx', img: 'assets/gallery/Character/Jinx.png' },
+  { category: 'Character', title: 'MongkyKing2K', img: 'assets/gallery/Character/MongkyKing2K.png' },
   { category: 'Environment', title: 'DonutCoffee', img: 'assets/gallery/Environment/DonutCoffee.png' },
   { category: 'Environment', title: 'WallThaiStyle', img: 'assets/gallery/Environment/WallThaiStyle.png' },
   { category: 'Game', title: 'Environment in game engine', img: 'assets/gallery/Game/Environment in game engine.png' },
@@ -70,9 +86,12 @@ const GALLERY_ITEMS = [
   { category: 'Game', title: 'Rama Project (senior project)', img: 'assets/gallery/Game/Rama Project (senior project).png' },
   { category: 'Game', title: 'Rama Project Blueprint (senior project)', img: 'assets/gallery/Game/Rama Project Blueprint (senior project).png' },
   { category: 'Game', title: 'Zombie survival (3D)', img: 'assets/gallery/Game/Zombie survival (3D).png' },
+  { category: 'Prop', title: '9mmGun', img: 'assets/gallery/Prop/9mmGun.png' },
+  { category: 'Prop', title: 'AmmoBox', img: 'assets/gallery/Prop/AmmoBox.png' },
   { category: 'Prop', title: 'Bed', img: 'assets/gallery/Prop/Bed.png' },
   { category: 'Prop', title: 'Chair', img: 'assets/gallery/Prop/Chair.png' },
   { category: 'Prop', title: 'Kunai', img: 'assets/gallery/Prop/Kunai.png' },
+  { category: 'Prop', title: 'Sherriff', img: 'assets/gallery/Prop/Sherriff.png' },
   { category: 'Prop', title: 'Table', img: 'assets/gallery/Prop/Table.png' },
   { category: 'Prop', title: 'Taogas', img: 'assets/gallery/Prop/Taogas.png' },
   { category: 'Prop', title: 'Trident', img: 'assets/gallery/Prop/Trident.png' },
@@ -93,8 +112,11 @@ const GALLERY_ITEMS = [
 const GALLERY_CATEGORIES = ['All', ...new Set(GALLERY_ITEMS.map(g => g.category))];
 let currentGalleryFilter = 'All';
 
+const TEXTURE_MAP_LABELS = { baseColor: 'Base Color', normal: 'Normal', roughness: 'Roughness', metallic: 'Metallic', height: 'Height', ao: 'AO' };
+
 let currentProjectIndex = 0;
 let currentTab = 'baseColor';
+let currentTexturePart = 0;
 
 /* =========================================================================
    NAV
@@ -276,7 +298,6 @@ const projectPicker = document.getElementById('projectPicker');
 const breakdownTabsEl = document.getElementById('breakdownTabs');
 const breakdownPanel = document.getElementById('breakdownPanel');
 const statsBar = document.getElementById('statsBar');
-const projectGrid = document.getElementById('projectGrid');
 
 function renderProjectPicker() {
   projectPicker.innerHTML = PROJECTS.map((p, i) =>
@@ -305,22 +326,44 @@ function renderBreakdownTab() {
     btn.classList.toggle('active', btn.dataset.tab === currentTab);
   });
 
-  if (currentTab === 'textures') {
-    breakdownPanel.innerHTML = `
-      <div class="bp-title">${tab.label} — ${project.title}</div>
-      <div class="bp-desc">${tab.desc}</div>
-      <div class="bp-swatches">
-        <div class="bp-swatch" style="background:#8a8a86">Base Color</div>
-        <div class="bp-swatch" style="background:#5c6b83">Normal</div>
-        <div class="bp-swatch" style="background:#3a3a3a">Roughness</div>
-        <div class="bp-swatch" style="background:#1c1c1c">Metallic</div>
-        <div class="bp-swatch" style="background:#4a4a4a">AO</div>
-      </div>
-    `;
-  } else if (currentTab === 'baseColor' || currentTab === 'wireframe') {
+  if (currentTab === 'baseColor' || currentTab === 'wireframe') {
     breakdownPanel.innerHTML = `
       <div class="bp-title">${tab.label} — ${project.title}</div>
       <div class="bp-desc">${tab.desc} (ดูผลได้บนวิวเวอร์ด้านซ้ายแบบ Real-time)</div>
+    `;
+  } else if (currentTab === 'textures' && project.renders?.textures?.length) {
+    const parts = project.renders.textures;
+    if (currentTexturePart >= parts.length) currentTexturePart = 0;
+    const part = parts[currentTexturePart];
+    breakdownPanel.innerHTML = `
+      <div class="bp-title">${tab.label} — ${project.title}</div>
+      <div class="bp-desc">${tab.desc}</div>
+      <div class="bp-part-tabs">
+        ${parts.map((p, i) => `<button class="bp-part-tab${i === currentTexturePart ? ' active' : ''}" data-part="${i}">${p.label}</button>`).join('')}
+      </div>
+      <div class="bp-tex-grid">
+        ${Object.entries(part.maps).map(([key, src]) => `
+          <div class="bp-tex-item">
+            <img class="bp-tex-img" src="${src}" alt="${part.label} ${TEXTURE_MAP_LABELS[key] || key}">
+            <span class="bp-tex-label">${TEXTURE_MAP_LABELS[key] || key}</span>
+          </div>
+        `).join('')}
+      </div>
+    `;
+    breakdownPanel.querySelectorAll('.bp-part-tab').forEach(btn => {
+      btn.addEventListener('click', () => {
+        currentTexturePart = Number(btn.dataset.part);
+        renderBreakdownTab();
+      });
+    });
+    breakdownPanel.querySelectorAll('.bp-tex-img').forEach(img => {
+      img.addEventListener('click', () => openLightbox({ img: img.src, title: `${part.label} — ${img.nextElementSibling.textContent}`, category: project.title }));
+    });
+  } else if (project.renders?.[tab.key]) {
+    breakdownPanel.innerHTML = `
+      <div class="bp-title">${tab.label} — ${project.title}</div>
+      <div class="bp-desc">${tab.desc}</div>
+      <img class="bp-render-img" src="${project.renders[tab.key]}" alt="${tab.label} — ${project.title}">
     `;
   } else {
     breakdownPanel.innerHTML = `
@@ -343,32 +386,11 @@ breakdownTabsEl.querySelectorAll('.b-tab').forEach(btn => {
 
 function selectProject(index) {
   currentProjectIndex = index;
+  currentTexturePart = 0;
   renderProjectPicker();
   renderStats();
   renderBreakdownTab();
   loadModel(PROJECTS[index].model);
-  document.querySelectorAll('.project-card').forEach((card, i) => {
-    card.classList.toggle('active', i === index);
-  });
-}
-
-function renderProjectGrid() {
-  projectGrid.innerHTML = PROJECTS.map((p, i) => `
-    <div class="project-card" data-index="${i}">
-      <div class="pc-thumb">${p.title}</div>
-      <div class="pc-body">
-        <div class="pc-title">${p.title}</div>
-        <div class="pc-meta">${p.role}</div>
-        <div class="pc-tags">${p.tools.map(t => `<span class="pc-tag">${t}</span>`).join('')}</div>
-      </div>
-    </div>
-  `).join('');
-  projectGrid.querySelectorAll('.project-card').forEach(card => {
-    card.addEventListener('click', () => {
-      selectProject(Number(card.dataset.index));
-      document.getElementById('showcase').scrollIntoView({ behavior: 'smooth' });
-    });
-  });
 }
 
 /* =========================================================================
@@ -422,7 +444,6 @@ document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeLight
 /* =========================================================================
    INIT
    ========================================================================= */
-renderProjectGrid();
 renderProjectPicker();
 renderStats();
 renderBreakdownTab();
