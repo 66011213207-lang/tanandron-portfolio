@@ -442,6 +442,19 @@ lightbox.addEventListener('click', (e) => { if (e.target === lightbox) closeLigh
 document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeLightbox(); });
 
 /* =========================================================================
+   HERO SHOWREEL
+   ========================================================================= */
+const heroSlides = document.querySelectorAll('#heroShowreel .hero-slide');
+if (heroSlides.length > 1) {
+  let heroSlideIndex = 0;
+  setInterval(() => {
+    heroSlides[heroSlideIndex].classList.remove('active');
+    heroSlideIndex = (heroSlideIndex + 1) % heroSlides.length;
+    heroSlides[heroSlideIndex].classList.add('active');
+  }, 3500);
+}
+
+/* =========================================================================
    INIT
    ========================================================================= */
 renderProjectPicker();
